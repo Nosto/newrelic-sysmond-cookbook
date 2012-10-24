@@ -1,3 +1,4 @@
+name             "newrelic-sysmond"
 maintainer       "Jani Luostarinen"
 maintainer_email "jani.luostarinen@nosto.com"
 license          "Apache 2.0"
