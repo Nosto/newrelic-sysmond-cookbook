@@ -31,7 +31,7 @@ when "debian", "ubuntu"
     uri "http://apt.newrelic.com/debian/"
     distribution "newrelic"
     components ["non-free"]
-    keyserver "subkeys.pgp.net"
+    keyserver "keyserver.ubuntu.com"
     key "548C16BF"
     action :add
     notifies :run, "execute[apt-get update]", :immediately
