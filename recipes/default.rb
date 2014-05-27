@@ -28,6 +28,7 @@ end
 execute "nrsysmond-config-license_key" do
   command "nrsysmond-config --set license_key=#{node['newrelic']['license_key']}"
   action :run
+  only_if { node['newrelic']['license_key'] }
 end
 
 execute "nrsysmond-config-ssl" do
@@ -37,5 +38,6 @@ end
 
 service "newrelic-sysmond" do
   supports :restart => true, :status => true
-  action [:enable, :start]  
+  action [:enable, :start]
+  only_if { node['newrelic']['license_key'] }
 end
