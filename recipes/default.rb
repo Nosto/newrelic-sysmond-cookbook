@@ -25,19 +25,16 @@ package "newrelic-sysmond" do
   action :upgrade
 end
 
-execute "nrsysmond-config-license_key" do
-  command "nrsysmond-config --set license_key=#{node['newrelic']['license_key']}"
-  action :run
-  only_if { node['newrelic']['license_key'] }
-end
-
-execute "nrsysmond-config-ssl" do
-  command "nrsysmond-config --set ssl=#{node['newrelic']['ssl']}"
-  action :run
-end
-
 service "newrelic-sysmond" do
   supports :restart => true, :status => true
-  action [:enable, :start]
+  action [:enable]
   only_if { node['newrelic']['license_key'] }
+end
+
+template "/etc/newrelic/nrsysmond.cfg" do
+  source "nrsysmond.erb"
+  owner "root"
+  group "root"
+  mode 0644
+  notifies :restart, "service[newrelic-sysmond]", :immediately
 end
