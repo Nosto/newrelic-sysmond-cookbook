@@ -23,6 +23,7 @@ include_recipe "newrelic-sysmond::newrelic_repo"
 
 package "newrelic-sysmond" do
   action :upgrade
+  options '-o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"'
 end
 
 service "newrelic-sysmond" do
