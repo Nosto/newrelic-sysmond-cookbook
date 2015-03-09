@@ -21,9 +21,8 @@
 
 include_recipe "newrelic-sysmond::newrelic_repo"
 
-apt_package "newrelic-sysmond" do
-  version node['cassandra']['version']
-  action :upgrade
+package "newrelic-sysmond" do
+  action :install
   options '-o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"'
 end
 
